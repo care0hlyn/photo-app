@@ -2,6 +2,15 @@
 
 <img src="<%= @photo.image.url %>">
 
+<p>Tagged:</p>
+<% @photo.tags.all.each do |tag| %>
+  <p><%= tag.user.email %>
+    <%= link_to "- Delete", user_photo_tag_path(tag.user, @photo, tag),
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"},
+                         :class => "btn btn-danger btn-xs" %></p>
+<% end %>
+
 
 <%= form_for [@user, @photo, @tag], :html => { :multipart => true } do |f| %>
   <div class="form-group">
@@ -9,4 +18,4 @@
     <input name="tag[photo_id]" type="hidden" value="<%= @photo.id %>">
   </div>
     <%= f.submit(:class => "btn btn-primary btn-xs") %>
-  <% end %>
+<% end %>

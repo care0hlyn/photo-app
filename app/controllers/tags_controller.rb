@@ -10,14 +10,17 @@ class TagsController < ApplicationController
     @user = User.find(params[:user_id])
     @photo = @user.photos.find(params[:photo_id])
     @tag = Tag.new(params[:tag])
-    @tag.save
-    redirect_to :back, notice: "#{@user.email} has been tagged!"
+    if @tag.save
+      redirect_to :back, notice: "User has been tagged!"
+    else
+      redirect_to :back, alert: "User has already been tagged!"
+    end
   end
 
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
-    redirect_to :back
+    redirect_to :back, notice: "Tag deleted!"
   end
 
 end
