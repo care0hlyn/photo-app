@@ -1,4 +1,20 @@
-<h1>shit></h1>
-<%= form_for @photo, :url => user_photos_path(@user), :html => { :multipart => true } do |form| %>
-  <%= form.file_field :image %>
+<h1>shit</h1>
+
+<%= form_for [@user, @photo], :html => { :multipart => true } do |f| %>
+  <% if @photo.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @photo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <input name="photo[user_id]" type="hidden" value="<%= @user.id %>">
+  <div class="field">
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+  </div>
+  <div class="actions"><%= f.submit "Upload Photo" %></div>
 <% end %>
