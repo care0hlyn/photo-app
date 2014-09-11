@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  has_many :tags
+  has_many :tags, dependent: :destroy
   belongs_to :user
 
 
