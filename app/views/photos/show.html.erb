@@ -1,0 +1,12 @@
+<h2>Photo</h2>
+
+<img src="<%= @photo.image.url %>">
+
+
+<%= form_for [@user, @photo, @tag], :html => { :multipart => true } do |f| %>
+  <div class="form-group">
+    <%= f.collection_select :user_id, User.all, :id, :email %>
+    <input name="tag[photo_id]" type="hidden" value="<%= @photo.id %>">
+  </div>
+    <%= f.submit(:class => "btn btn-primary btn-xs") %>
+  <% end %>

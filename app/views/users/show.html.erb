@@ -13,7 +13,7 @@
   <div class="col-md-12 portfolio-item">
     <% @photos.each do |photo| %>
     <div class="col-md-4 portfolio-item">
-      <img class="img-responsive img-rounded" src="<%= photo.image.url(:medium) %>">
+      <a href="/users/<%= @user.id %>/photos/<%= photo.id %>"><img class="img-responsive img-rounded" src="<%= photo.image.url(:medium) %>"></a>
     </div>
     <% end %>
   </div>

@@ -1,4 +1,4 @@
-<h1>shit</h1>
+<h1>Add a photo to <%= @user.email %>'s roll</h1>
 
 <%= form_for [@user, @photo], :html => { :multipart => true } do |f| %>
   <% if @photo.errors.any? %>
