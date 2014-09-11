@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 # attr_accessible :email, :password, :password_confirmation
-  before_filter :authorize
+  before_filter :authorize, only: [:show, :edit, :update]
 
   def index
     @users = User.all

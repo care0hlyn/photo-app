@@ -1,0 +1,14 @@
+
+<%= form_for [@user, @photo], :html => { :multipart => true } do |f| %>
+<div class="field">
+      <%= f.label :caption %><br />
+      <%= f.text_field :caption %>
+    </div>
+    <div class="actions"><%= f.submit "Update" %></div>
+    <% end %>
+
+
+<%= link_to "- Delete", user_photo_path(@photo.user, @photo),
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"},
+                         :class => "btn btn-danger btn-xs" %>

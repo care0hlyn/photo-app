@@ -26,6 +26,28 @@ class PhotosController < ApplicationController
     @tag = Tag.new(params[:tag])
   end
 
+  def edit
+    @user = User.find(params[:user_id])
+    @photo = Photo.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:user_id])
+    @photo = Photo.find(params[:id])
+    if @photo.update(params[:photo])
+      redirect_to user_photo_path(@user, @photo), notice: "Caption updated!"
+    else
+      redirect_to :back, alert: "Update failed!"
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @photo = Photo.find(params[:id])
+    @photo.delete
+    redirect_to user_path(@user), notice: "Photo deleted!"
+  end
+
   private
 
   def photo_params
