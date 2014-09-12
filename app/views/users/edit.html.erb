@@ -16,11 +16,11 @@
       <%= f.label :email %><br />
       <%= f.text_field :email %>
     </div>
-
+  <br>
   <div class="actions"><%= f.submit "Update", :class => "btn btn-default btn-xs" %></div>
   <% end %>
   <br>
-  <%= link_to "Delete", user_path(@user),
+  <%= link_to "Delete Account", user_path(@user),
                            :data => {:confirm => "You sure?",
                                      :method => "delete"},
                            :class => "btn btn-danger btn-xs" %>

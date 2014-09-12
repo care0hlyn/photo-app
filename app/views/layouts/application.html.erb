@@ -8,17 +8,49 @@
 </head>
 <body>
 
-  <div class="container">
+  <% if current_user != nil %>
 
-  <div id="user_header">
-    <% if current_user %>
+  <nav class="collapse navbar-collapse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/users/<%= @user.id %>">Fauxteau</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/users/<%= @user.id %>"><%= @user.name %>'s Roll</a></li>
+            <li><%= link_to "Upload Photo", new_user_photo_path(@user) %></li>
+            <li><%= link_to "Edit Account", edit_user_path(@user) %></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+  <div id="login-card">
+    <h6><% if current_user %>
       Logged in as <%= current_user.email %>.
       <%= link_to "Log Out", session_path("current"), method: "delete" %>
     <% else %>
-      <%= link_to "Sign Up", new_user_path %> or
+      <%= link_to "Sign Up", new_user_path %> |
       <%= link_to "Log In", new_session_path %>
-    <% end %>
+    <% end %></h6>
   </div>
+
+<% end %>
 
     <%= flash[:alert] %>
     <%= flash[:notice] %>
